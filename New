@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ReplyRocket helps small businesses write better customer replies in less time.">
+<title>ReplyRocket AI — Reply Smarter</title>
+
+<style>
+:root {
+  --purple: #7557ff;
+  --dark: #17162b;
+  --muted: #77768c;
+  --background: #f8f7ff;
+  --border: #e9e6f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: white;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+nav {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: var(--purple);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--dark);
+  font-size: 14px;
+  margin-left: 18px;
+}
+
+.button {
+  display: inline-block;
+  background: var(--purple);
+  color: white;
+  padding: 13px 21px;
+  border-radius: 12px;
+  border: 0;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover {
+  opacity: .88;
+}
+
+.hero {
+  background: linear-gradient(140deg, #f8f6ff, #eeebff);
+  text-align: center;
+  padding: 85px 20px 65px;
+}
+
+.badge {
+  display: inline-block;
+  background: white;
+  border: 1px solid var(--border);
+  padding: 7px 13px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--purple);
+}
+
+h1 {
+  font-size: clamp(38px, 6vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  max-width: 780px;
+  margin: 24px auto;
+}
+
+.hero p {
+  max-width: 570px;
+  margin: 0 auto 28px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+section {
+  padding: 65px 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-title h2 {
+  font-size: 34px;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.section-title p {
+  color: var(--muted);
+}
+
+.generator-section {
+  background: var(--background);
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 27px;
+  box-shadow: 0 12px 35px rgba(40, 25, 100, .05);
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 17px 0 8px;
+}
+
+textarea, select, input {
+  width: 100%;
+  border: 1px solid #dedbea;
+  border-radius: 10px;
+  padding: 13px;
+  font: inherit;
+  background: white;
+  color: var(--dark);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+textarea:focus, select:focus {
+  outline: 2px solid #c9bfff;
+  border-color: var(--purple);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.notice {
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  background: #f8f7ff;
+  padding: 12px;
+  border-radius: 9px;
+}
+
+.result {
+  display: none;
+  margin-top: 22px;
+  padding: 18px;
+  background: #f7f5ff;
+  border-radius: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.result p {
+  font-size: 14px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.feature {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.feature-icon {
+  font-size: 28px;
+}
+
+.feature h3 {
+  margin-bottom: 5px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.pricing {
+  background: var(--background);
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 720px;
+  margin: auto;
+}
+
+.price-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 28px;
+  border-radius: 18px;
+}
+
+.price-card.pro {
+  border: 2px solid var(--purple);
+}
+
+.price {
+  font-size: 37px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.price small {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.price-card li {
+  margin-bottom: 9px;
+  color: #55546a;
+}
+
+.price-card .button {
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 650px) {
+  nav {
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    margin-left: 8px;
+  }
+
+  .features, .price-grid, .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 60px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">🚀 ReplyRocket<span> AI</span></div>
+  <div>
+    <a href="#features">Features</a>
+    <a href="#generator">Try it</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="badge">✦ YOUR BUSINESS, JUST A LITTLE SMARTER</div>
+  <h1>Reply to every customer like a pro.</h1>
+  <p>
+    Spend less time writing customer messages and more time
+    growing your business. Create professional replies in seconds.
+  </p>
+  <a class="button" href="#generator">Explore the demo →</a>
+</header>
+
+<section id="generator" class="generator-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Your reply, rewritten.</h2>
+      <p>Try our interactive prototype with a sample customer message.</p>
+    </div>
+
+    <div class="card">
+      <form id="replyForm">
+        <label for="message">What did your customer say?</label>
+        <textarea id="message" required maxlength="2000"
+          placeholder="Example: Hi, how much does your cleaning service cost?"></textarea>
+
+        <div class="form-grid">
+          <div>
+            <label for="business">Business type</label>
+            <select id="business">
+              <option>General business</option>
+              <option>Cleaning service</option>
+              <option>Hair salon</option>
+              <option>Online store</option>
+              <option>Freelancer</option>
+              <option>Car detailing</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="tone">Reply tone</label>
+            <select id="tone">
+              <option value="Friendly">Friendly</option>
+              <option value="Professional">Professional</option>
+              <option value="Persuasive">Persuasive</option>
+              <option value="Apologetic">Apologetic</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="language">Reply language</label>
+        <select id="language">
+          <option value="English">English</option>
+          <option value="Finnish">Finnish</option>
+        </select>
+
+        <button class="button" type="submit" style="margin-top:20px;width:100%">
+          Generate demo reply ✨
+        </button>
+      </form>
+
+      <div id="result" class="result" aria-live="polite">
+        <strong>Demo reply</strong>
+        <p id="reply"></p>
+        <button id="copy" class="button" type="button">Copy reply</button>
+      </div>
+
+      <div class="notice">
+        Prototype notice: this version uses simple example templates,
+        not a live AI model. Do not enter private customer information.
+        Real AI generation will be connected in a later development step.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Built for busy business owners.</h2>
+      <p>Simple tools to make everyday communication easier.</p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Save time</h3>
+        <p>Start with a ready-made response instead of a blank page.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>Choose your tone</h3>
+        <p>Adapt your response to different customer situations.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🌍</div>
+        <h3>Reach more people</h3>
+        <p>Plan multilingual support for your customers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div class="section-title">
+      <h2>Simple pricing.</h2>
+      <p>Start free. Consider upgrading when you need more.</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Free</h3>
+        <div class="price">€0 <small>/ month</small></div>
+        <ul>
+          <li>Try the demo generator</li>
+          <li>Explore reply templates</li>
+          <li>No payment required</li>
+        </ul>
+        <a class="button" href="#generator">Try the demo</a>
+      </div>
+
+      <div class="price-card pro">
+        <h3>Starter</h3>
+        <div class="price">€7.99 <small>/ month</small></div>
+        <ul>
+          <li>Planned live AI generation</li>
+          <li>Additional reply styles</li>
+          <li>Planned usage limits</li>
+        </ul>
+        <button class="button" type="button"
+          onclick="alert('Subscriptions are not active yet. We are still building the product.')">
+          Coming soon
+        </button>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:#77768c;font-size:13px;margin-top:22px">
+      Paid features are not available until AI and subscription services are connected.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">🚀 ReplyRocket<span> AI</span></div>
+  <p>Helping small businesses communicate better.</p>
+  <p>© <span id="year"></span> ReplyRocket AI</p>
+  <p>Prototype — not yet a commercial AI service.</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const form = document.getElementById("replyForm");
+const result = document.getElementById("result");
+const replyBox = document.getElementById("reply");
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const message = document.getElementById("message").value.trim();
+  const business = document.getElementById("business").value;
+  const tone = document.getElementById("tone").value;
+  const language = document.getElementById("language").value;
+
+  if (!message) return;
+
+  let reply;
+
+  if (language === "Finnish") {
+    const greetings = {
+      Friendly: "Hei! Kiitos paljon viestistäsi.",
+      Professional: "Hei, kiitos yhteydenotostanne.",
+      Persuasive: "Hei! Kiitos kiinnostuksestasi palveluitamme kohtaan.",
+      Apologetic: "Hei, pahoittelemme tilannetta ja kiitämme viestistäsi."
+    };
+
+    reply = greetings[tone] +
+      "\n\n" +
+      "Haluamme auttaa sinua parhaalla mahdollisella tavalla. " +
+      "Voisitko kertoa hieman lisää tarpeistasi, jotta voimme antaa " +
+      "sinulle sopivimman vastauksen?\n\n" +
+      "Ystävällisin terveisin,\n" + business;
+
+  } else {
+    const greetings = {
+      Friendly: "Hi! Thanks so much for reaching out.",
+      Professional: "Hello, thank you for contacting us.",
+      Persuasive: "Hi! Thanks for your interest in our services.",
+      Apologetic: "Hello, we're sorry to hear about your concern. Thank you for letting us know."
+    };
+
+    reply = greetings[tone] +
+      "\n\n" +
+      "We'd be happy to help! Could you share a little more " +
+      "information about what you need so we can provide the " +
+      "most suitable answer?\n\n" +
+      "Best regards,\n" + business;
+  }
+
+  replyBox.textContent = reply;
+  result.style.display = "block";
+});
+
+document.getElementById("copy").addEventListener("click", async function() {
+  try {
+    await navigator.clipboard.writeText(replyBox.textContent);
+    this.textContent = "Copied!";
+    setTimeout(() => this.textContent = "Copy reply", 1500);
+  } catch {
+    alert("Please select and copy the reply manually.");
+  }
+});
+</script>
+
+</body>
+</html>
+:::
+
+### 4. Save your code
+
+After pasting the code into GitHub:
+
+1. Click **Commit changes**.
+2. Keep the default commit message.
+3. Confirm by clicking **Commit changes** again.
+
+Your website code will now be stored in your repository.
+
+---
+
+# STEP 4 — Get your website online for free
+
+Once you've saved the file, we can publish it.
+
+1. Visit [Cloudflare Pages](https://pages.cloudflare.com/?utm_source=chatgpt.com).
+2. Create an account if necessary.
+3. Find the option to create a Pages project connected to GitHub.
+4. Select your `replyrocket-ai` repository.
+5. Choose the static HTML deployment option. Leave the build command empty and use `/` as the output directory.
+6. Deploy the site.
+
+The exact dashboard wording may vary.
+
+Cloudflare should give you a web address where you can visit your website. You may need to authorize access to your GitHub repository.
+
+## 🎯 Your mission right now
+
+**Do these two things:**
+
+1. Create `index.html` and save the code in GitHub.
+2. Reply **SAVED** when you've done it.
+
+If you get stuck, tell me exactly what you see on your screen.
+
+### What we'll do next
+
+After the website is online, we'll work on the most important upgrades:
+
+- **Step 5:** Connect a real AI model.
+- **Step 6:** Add user accounts and secure usage limits.
+- **Step 7:** Connect recurring payments.
+- **Step 8:** Find potential customers and try to get our first paying subscriber.
+
+We can build the prototype for €0. A real AI service and paid subscriptions may eventually require a payment method or incur costs, so we'll check the available free options before connecting anything.
+
+**One step at a time. Let's get your first website online! 🚀**
